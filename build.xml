@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create runnable jar for Network utility">
+                         
+	<target name="create_run_jar">
+		<delete dir="./build/Ctftools" />
+		<jar destfile="./build/Ctftools/Ctftools.jar">
+			<manifest>
+				<attribute name="Main-Class" value="com.ctftools.ui.MainUi" />
+				<attribute name="Class-Path" value="./libs/mssql-jdbc-7.4.1.jar "/>
+			</manifest>
+			<fileset dir="./bin" />
+		</jar>
+		
+		<mkdir dir="./build/Ctftools/" />
+		<mkdir dir="./build/Ctftools/logs/" />
+		<mkdir dir="./build/Ctftools/conf/" />
+		<mkdir dir="./build/Ctftools/libs/" />
+		
+		<copy file="./conf/app.properties" todir="./build/Ctftools/conf/"/>
+		<copy file="./conf/ctftools.sh" todir="./build/Ctftools/"/>
+		<copy file="./conf/ctf1.ico" todir="./build/Ctftools/conf/"/>
+		<!--<copy file="./resource/Ctftools.exe" todir="./build/Ctftools/"/>-->
+		
+		<copy todir="./build/Ctftools/libs/">
+		  <fileset dir="./libs/"/>
+		</copy>
+		
+		<chmod file="./build/Ctftools/ctftools.sh" perm="711"/>
+	
+	</target>
+</project>
